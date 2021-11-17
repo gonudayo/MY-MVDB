@@ -43,7 +43,7 @@ function LandingPage() {
 				<h2>Movies by latest</h2>
 				<hr />
 				{/* Rovie Grid Cards */}
-				<Row gutter={[16, 16]}>
+				<Row gutter={[16, 0]} justify="center" align="middle">
 					{Movies &&
 						Movies.map((movie, index) => (
 							<React.Fragment key={index}>
