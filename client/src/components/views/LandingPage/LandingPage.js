@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useInView } from "react-intersection-observer"
 import { FaCode } from 'react-icons/fa';
 import { API_URL, API_KEY, IMAGE_BASE_URL } from '../../Config';
 import MainImage from './Sections/MainImage';
@@ -8,7 +9,9 @@ function LandingPage() {
 	const [Movies, setMovies] = useState([]);
 	const [MainMovieImage, setMainMovieImage] = useState(null);
 	const [CurrentPage, setCurrentPage] = useState(0);
-
+	const [loading, setLoading] = useState(false);
+	const [ref, inView] = useInView();
+	
 	const fetchMovies = (endpoint) => {
 		fetch(endpoint)
 			.then((response) => response.json())
@@ -24,6 +27,13 @@ function LandingPage() {
 		const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
 		fetchMovies(endpoint);
 	}, []);
+	
+	 useEffect(() => {
+    	// 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
+		if (inView && !loading) {
+		  loadMoreItems();
+		}
+  	}, [inView, loading])
 	
 	const loadMoreItems = () => {
 		const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${CurrentPage + 1}`;
@@ -57,8 +67,7 @@ function LandingPage() {
 						))}
 				</Row>
 			</div>
-			<div style={{ display: 'flex', justifyContent: 'center' }}>
-				<button onClick={loadMoreItems}>Load More</button>
+			<div ref={ref} style={{ display: 'flex', justifyContent: 'center' }}>
 			</div>
 		</div>
 	);
