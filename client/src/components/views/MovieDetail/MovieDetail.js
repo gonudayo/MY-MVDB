@@ -64,7 +64,7 @@ function MovieDetail(props) {
 				</div>
 				
 				{ActorToggle && 
-					<Row gutter={[40, 16]}>
+					<Row gutter={[40, 64]}>
 						{Casts &&
 							Casts.map((cast, index) => (
 								<React.Fragment key={index}>
