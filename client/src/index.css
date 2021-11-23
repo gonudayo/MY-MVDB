@@ -37,3 +37,9 @@ input.error {
   height: 5px;
   margin-top: -12px;
 }
+
+.name {
+	font-family: sans-serif;
+	font-size: 16px;
+	color: black;
+}
