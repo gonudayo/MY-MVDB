@@ -9,7 +9,7 @@ function LandingPage() {
 	const [Movies, setMovies] = useState([]);
 	const [MainMovieImage, setMainMovieImage] = useState(null);
 	const [CurrentPage, setCurrentPage] = useState(0);
-	const [loading, setLoading] = useState(false);
+	// const [loading, setLoading] = useState(false);
 	const [ref, inView] = useInView();
 	
 	const fetchMovies = (endpoint) => {
@@ -30,10 +30,10 @@ function LandingPage() {
 	
 	 useEffect(() => {
     	// 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
-		if (inView && !loading) {
+		if (inView) {
 		  loadMoreItems();
 		}
-  	}, [inView, loading])
+  	}, [inView])
 	
 	const loadMoreItems = () => {
 		const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${CurrentPage + 1}`;
@@ -66,8 +66,7 @@ function LandingPage() {
 							</React.Fragment>
 						))}
 				</Row>
-			</div>
-			<div ref={ref} style={{ display: 'flex', justifyContent: 'center' }}>
+				<div ref={ref}></div>
 			</div>
 		</div>
 	);
