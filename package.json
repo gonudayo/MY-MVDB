@@ -1,11 +1,11 @@
 {
-  "name": "react-boiler-plate",
+  "name": "my-movie-database",
   "version": "1.0.0",
-  "description": "react boiler plate",
+  "description": "my movie database",
   "main": "index.js",
   "engine": {
-    "node": "10.16.0",
-    "npm": "6.9.0"
+    "node": "14.17.6",
+    "npm": "6.14.15"
   },
   "scripts": {
     "start": "node server/index.js",
@@ -13,7 +13,7 @@
     "frontend": "npm run start --prefix client",
     "dev": "concurrently \"npm run backend\" \"npm run start --prefix client\""
   },
-  "author": "John ahn",
+  "author": "Gunwoo Kim",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^3.0.6",
